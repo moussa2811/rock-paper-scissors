@@ -20,7 +20,16 @@ let computerPlay = () =>{
 };
 
 // ask user choice and return its value;
-let userPlay = () => prompt('Enter rock, paper or scissor : ').trim().toLocaleLowerCase();
+let userPlay = () => {
+    let selection;
+    while (true){
+        selection = prompt('Enter rock, paper or scissor : ').trim().toLocaleLowerCase();
+        if ( selection == 'rock' || selection == 'paper' || selection == 'scissor' ) {
+            break;
+        }
+    }
+    return selection;
+};
 
 //play one round game and return 0 for equality, 1 for computer win and 2 for user win
 let playRound = (computerSelection, playerSelection) =>{
