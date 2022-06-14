@@ -56,8 +56,7 @@ let playRound = (computerSelection, playerSelection) =>{
                 return 2; //user won, scissor > paper
             }
             //user rock
-            return 1; //computer wo
-            let userSelection = userPlay();n, paper > rock
+            return 1; //computer won, paper > rock
 
         } else if (computerSelection == 'scissor') { //computer scissor
 
