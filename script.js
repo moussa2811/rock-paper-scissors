@@ -53,7 +53,8 @@ let playRound = (computerSelection, playerSelection) =>{
                 return 2; //user won, scissor > paper
             }
             //user rock
-            return 1; //computer won, paper > rock
+            return 1; //computer wo
+            let userSelection = userPlay();n, paper > rock
 
         } else if (computerSelection == 'scissor') { //computer scissor
 
@@ -71,12 +72,12 @@ let playRound = (computerSelection, playerSelection) =>{
 // 5 Game Rounds function
 let game =  () =>{
 
-    alert("Let's Go :-)");
+    console.log("Let's Go :-)");
     //initialise wins
     let playerWin = 0, computerWin = 0, equality = 0 , win ;
     for (let i = 0; i < 5; i++) {
 
-        alert(`Round ${i+1}`);
+        console.log(`Round ${i+1}`);
         //initialise winner of the new round
         win = 0;
 
@@ -87,22 +88,22 @@ let game =  () =>{
         //play the round and get the winner
         win = playRound(computerSelection, userSelection);
         if (win == 1) { //computer win
-            alert(`You lose ${computerSelection} beats ${userSelection}`);
+            console.log(`You lose ${computerSelection} beats ${userSelection}`);
             computerWin++;
         } else if (win == 2){ //user win
-            alert(`You win ${userSelection} beats ${computerSelection}`);
+            console.log(`You win ${userSelection} beats ${computerSelection}`);
             playerWin++;
         } else { //equality
-            alert(`No winner ${userSelection} equals ${computerSelection}`);
+            console.log(`No winner ${userSelection} equals ${computerSelection}`);
             equality++;
         }
     }
     
     //alert results and the winner
     if (playerWin > computerWin) {
-        alert(`You won,${playerWin} round(s) won, ${computerWin} round(s) lost, ${equality} nul(s).`)
+        console.log(`You won,${playerWin} round(s) won, ${computerWin} round(s) lost, ${equality} nul(s).`)
     } else {
-        alert(`You lose, ${playerWin} round(s) won, ${computerWin}round(s) lost, ${equality} nul(s).`)
+        console.log(`You lose, ${playerWin} round(s) won, ${computerWin}round(s) lost, ${equality} nul(s).`)
     }
 }
 
