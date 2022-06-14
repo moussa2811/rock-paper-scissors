@@ -4,7 +4,7 @@
 let computerPlay = () =>{
     /*
         { random number between 0 and 1 } 
-            * 2 to get between 0 and 2
+            * 3 to get between 0 and 2
         and then floor to get the lower or equal int
     */
     let randomNumber = Math.floor( ( Math.random() *3 ) );
