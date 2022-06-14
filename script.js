@@ -23,9 +23,12 @@ let computerPlay = () =>{
 let userPlay = () => {
     let selection;
     while (true){
-        selection = prompt('Enter rock, paper or scissor : ').trim().toLocaleLowerCase();
-        if ( selection == 'rock' || selection == 'paper' || selection == 'scissor' ) {
-            break;
+        selection = prompt('Enter rock, paper or scissor : ');
+        if (selection) {
+            selection = selection.trim().toLocaleLowerCase();
+            if ( selection == 'rock' || selection == 'paper' || selection == 'scissor' ) {
+                break;
+            }
         }
     }
     return selection;
@@ -88,20 +91,20 @@ let game =  () =>{
         //play the round and get the winner
         win = playRound(computerSelection, userSelection);
         if (win == 1) { //computer win
-            console.log(`You lose ${computerSelection} beats ${userSelection}`);
+            console.log(`You lose, ${computerSelection} beats ${userSelection}`);
             computerWin++;
         } else if (win == 2){ //user win
-            console.log(`You win ${userSelection} beats ${computerSelection}`);
+            console.log(`You win, ${userSelection} beats ${computerSelection}`);
             playerWin++;
         } else { //equality
-            console.log(`No winner ${userSelection} equals ${computerSelection}`);
+            console.log(`No winner, ${userSelection} equals ${computerSelection}`);
             equality++;
         }
     }
     
     //alert results and the winner
     if (playerWin > computerWin) {
-        console.log(`You won,${playerWin} round(s) won, ${computerWin} round(s) lost, ${equality} nul(s).`)
+        console.log(`You won, ${playerWin} round(s) won, ${computerWin} round(s) lost, ${equality} nul(s).`)
     } else {
         console.log(`You lose, ${playerWin} round(s) won, ${computerWin}round(s) lost, ${equality} nul(s).`)
     }
