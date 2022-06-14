@@ -81,8 +81,8 @@ let game =  () =>{
         win = 0;
 
         //get computer and user selections
-        let computerSelection = computerPlay();
         let userSelection = userPlay();
+        let computerSelection = computerPlay();
 
         //play the round and get the winner
         win = playRound(computerSelection, userSelection);
