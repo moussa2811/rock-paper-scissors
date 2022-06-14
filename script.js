@@ -1,7 +1,7 @@
 let computerPlay = () =>{
     
     return computerSelection;
-}
+};
 
 //play one round game and return 0 for equality, 1 for computer win and 2 for user win
 let gameRound = (computerSelection, playerSelection) =>{
@@ -39,4 +39,22 @@ let gameRound = (computerSelection, playerSelection) =>{
         }
     }
     
+};
+
+let game =  () =>{
+    let playerWin = 0, computerWin = 0, equality = 0 ; win ;
+    for (let i = 0; i < 5; i++) {
+        win = 0;
+        win = gameRound();
+        if (win == 1) {
+            alert(`You lose ${computerSelection} beats ${playerSelection}`);
+            computerWin++;
+        } else if (win == 2){
+            alert(`You win ${playerSelection} beats ${computerSelection}`);
+            playerWin++;
+        } else {
+            alert(`No winner ${playerSelection} equals ${computerSelection}`);
+            equality++;
+        }
+    }
 }
