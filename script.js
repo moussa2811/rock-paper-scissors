@@ -7,7 +7,8 @@ let computerPlay = () =>{
             * 2 to get between 0 and 2
         and then floor to get the lower or equal int
     */
-    let randomNumber = Math.floor( ( Math.random()  *2 ) );
+    let randomNumber = Math.floor( ( Math.random() *3 ) );
+    // return computer choice
     switch (randomNumber){
         case 0:
             return 'rock';
@@ -19,11 +20,10 @@ let computerPlay = () =>{
 };
 
 // ask user choice and return its value;
-let userPlay = () => prompt('Enter rock, paper or scissor : ');
+let userPlay = () => prompt('Enter rock, paper or scissor : ').trim().toLocaleLowerCase();
 
 //play one round game and return 0 for equality, 1 for computer win and 2 for user win
 let playRound = (computerSelection, playerSelection) =>{
-    playerSelection = playerSelection.toLowerCase();
 
     // equality
     if (computerSelection == playerSelection) {
@@ -64,34 +64,37 @@ let game =  () =>{
 
     alert("Let's Go :-)");
     //initialise wins
-    let playerWin = 0, computerWin = 0, equality = 0 ; win ;
+    let playerWin = 0, computerWin = 0, equality = 0 , win ;
     for (let i = 0; i < 5; i++) {
 
+        alert(`Round ${i+1}`);
         //initialise winner of the new round
         win = 0;
 
         //get computer and user selections
-        let computerSelection = computerPlay ();
-        let userSelection = userPlay ();
+        let computerSelection = computerPlay();
+        let userSelection = userPlay();
 
         //play the round and get the winner
         win = playRound(computerSelection, userSelection);
         if (win == 1) { //computer win
-            alert(`You lose ${computerSelection} beats ${playerSelection}`);
+            alert(`You lose ${computerSelection} beats ${userSelection}`);
             computerWin++;
         } else if (win == 2){ //user win
-            alert(`You win ${playerSelection} beats ${computerSelection}`);
+            alert(`You win ${userSelection} beats ${computerSelection}`);
             playerWin++;
         } else { //equality
-            alert(`No winner ${playerSelection} equals ${computerSelection}`);
+            alert(`No winner ${userSelection} equals ${computerSelection}`);
             equality++;
         }
     }
     
     //alert results and the winner
     if (playerWin > computerWin) {
-        alert(`You won, ${playerWin} > ${computerWin}, ${equality} nul(s).`)
+        alert(`You won,${playerWin} round(s) won, ${computerWin} round(s) lost, ${equality} nul(s).`)
     } else {
-        alert(`You lose, ${playerWin} < ${computerWin}, ${equality} nul(s).`)
+        alert(`You lose, ${playerWin} round(s) won, ${computerWin}round(s) lost, ${equality} nul(s).`)
     }
 }
+
+game();
