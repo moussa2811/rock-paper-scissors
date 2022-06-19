@@ -1,12 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
 </head>
+
 <body>
+    <div class="main flex">
+
+        <h1>Rock Paper Scissors Game</h1>
+        <h2 id="rounds"></h2>
+        <h3 id="roundScore"></h3>
+        <div class="selections flex">
+            <div>
+                <img id="rock"
+                    src="https://www.seekpng.com/png/detail/816-8161371_rock-paper-scissor-icon-png.png"
+                    alt="Rock image from Png@seekpng.com">
+            </div>
+            <div>
+                <img id="paper"
+                    src="https://www.pngitem.com/pimgs/m/266-2667252_transparent-rock-paper-scissors-clipart-rock-paper-scissors.png"
+                    alt="Paper image from PNGItem">
+            </div>
+            <div>
+                <img id="scissor"
+                    src="https://www.seekpng.com/png/detail/111-1114370_rock-paper-scissors-rock-paper-scissors-clipart.png"
+                    alt="Scissors imgage from Clipart@seekpng.com">
+            </div>
+        </div>
+        <div class="scores flex">
+            <div>
+                <p id="win"></p>
+            </div>
+            <div>
+                <p id="equality"></p>
+            </div>
+            <div>
+                <p id="lost"></p>
+            </div>
+        </div>
+        <div class="new flex">
+            <p id="newGame">Start New Game</p>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
+
 </html>

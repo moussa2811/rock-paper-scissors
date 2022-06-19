@@ -1,15 +1,11 @@
-// Rock Paper Scissor Game
+let playerWin = 0;
+let computerWin = 0;
+let equality = 0;
+let roundsCount = 0;
 
-//generate computer choice
-let computerPlay = () =>{
-    /*
-        { random number between 0 and 1 } 
-            * 3 to get between 0 and 2
-        and then floor to get the lower or equal int
-    */
-    let randomNumber = Math.floor( ( Math.random() *3 ) );
-    // return computer choice
-    switch (randomNumber){
+let computerPlay = () => {
+    let randomNumber = Math.floor((Math.random() * 3));
+    switch (randomNumber) {
         case 0:
             return 'rock';
         case 1:
@@ -19,94 +15,107 @@ let computerPlay = () =>{
     }
 };
 
-// ask user choice and return its value;
-let userPlay = () => {
-    let selection;
-    while (true){
-        selection = prompt('Enter rock, paper or scissor : ');
-        if (selection) {
-            selection = selection.trim().toLocaleLowerCase();
-            if ( selection == 'rock' || selection == 'paper' || selection == 'scissor' ) {
-                break;
-            }
-        }
-    }
-    return selection;
-};
+let playRound = (userSelection) => {
 
-//play one round game and return 0 for equality, 1 for computer win and 2 for user win
-let playRound = (computerSelection, playerSelection) =>{
+    if (playerWin !== 5 && computerWin !== 5) {
 
-    // equality
-    if (computerSelection == playerSelection) {
-        return 0;
-    } else {
-        
-        if (computerSelection == 'rock') { //computer rock
-            
-            if (playerSelection == 'scissor') { //user scissor
-                return 1; //computer won, rock > scissor
-            }
-            //user paper
-            return 2; //user won paper > rock
-
-        } else if (computerSelection == 'paper') { //computer paper
-            
-            if (playerSelection == 'scissor') { //user scissor
-                return 2; //user won, scissor > paper
-            }
-            //user rock
-            return 1; //computer won, paper > rock
-
-        } else if (computerSelection == 'scissor') { //computer scissor
-
-            if (playerSelection == 'paper') { //user paper
-                return 1; //computer won, scissor > paper
-            }
-            //user rock
-            return 2; //user won, rock > scissor
-            
-        }
-    }
-    
-};
-
-// 5 Game Rounds function
-let game =  () =>{
-
-    console.log("Let's Go :-)");
-    //initialise wins
-    let playerWin = 0, computerWin = 0, equality = 0 , win ;
-    for (let i = 0; i < 5; i++) {
-
-        console.log(`Round ${i+1}`);
-        //initialise winner of the new round
-        win = 0;
-
-        //get computer and user selections
-        let userSelection = userPlay();
+        roundsCount++;
+        rounds.textContent = `${roundsCount} Round(s) played.`;
+        let playerSelection = userSelection;
         let computerSelection = computerPlay();
+        let roundWinner = '';
 
-        //play the round and get the winner
-        win = playRound(computerSelection, userSelection);
-        if (win == 1) { //computer win
-            console.log(`You lose, ${computerSelection} beats ${userSelection}`);
+        if (computerSelection == playerSelection) {
+            roundWinner;
+        } else {
+            if (computerSelection == 'rock') {
+                if (playerSelection == 'scissor') {
+                    roundWinner = 'computer';
+                } else roundWinner = 'player';
+
+            } else if (computerSelection == 'paper') {
+                if (playerSelection == 'scissor') {
+                    roundWinner = 'player';
+                } else roundWinner = 'computer';
+
+            } else if (computerSelection == 'scissor') {
+                if (playerSelection == 'paper') {
+                    roundWinner = 'computer';
+                } else roundWinner = 'player';
+
+            }
+        }
+
+        if (roundWinner == 'computer') {
             computerWin++;
-        } else if (win == 2){ //user win
-            console.log(`You win, ${userSelection} beats ${computerSelection}`);
+            roundScore.textContent = `You lost this round, ${computerSelection} beats ${playerSelection}.`;
+            lost.textContent = `You lost ${computerWin} game(s)`;
+        } else if (roundWinner == 'player') {
             playerWin++;
-        } else { //equality
-            console.log(`No winner, ${userSelection} equals ${computerSelection}`);
+            roundScore.textContent = `You win this round, ${playerSelection} beats ${computerSelection}.`;
+            win.textContent = `You won ${playerWin} game(s)`;
+        } else {
             equality++;
+            roundScore.textContent = `No winner this round, ${playerSelection} equals ${computerSelection}.`;
+            equal.textContent = `${equality} Nulls(s)`;
+        }
+
+        if (playerWin == 5) {
+            rounds.textContent = `${roundsCount} Round(s) played. Game finished, you won.`;
+        } else if (computerWin == 5) {
+            rounds.textContent = `${roundsCount} Round(s) played. Game finished, you lost.`;
+        }
+
+    } else {
+        if(confirm('Game Finished, start new game ?')){
+            startNewGame();
         }
     }
-    
-    //alert results and the winner
-    if (playerWin > computerWin) {
-        console.log(`You won, ${playerWin} round(s) won, ${computerWin} round(s) lost, ${equality} nul(s).`)
-    } else {
-        console.log(`You lose, ${playerWin} round(s) won, ${computerWin}round(s) lost, ${equality} nul(s).`)
-    }
+};
+
+let startNewGame = () => {
+    playerWin = 0;
+    computerWin = 0;
+    equality = 0;
+    roundsCount = 0;
+    win.textContent = 'Your victories Here';
+    lost.textContent = 'Your losts Here';
+    equal.textContent = 'Nuls here';
+    rounds.textContent = 'New Game started';
+    roundScore.textContent = '';
 }
 
-game();
+let rock = document.getElementById('rock');
+rock.addEventListener('click',
+    function (e) {
+        let userSelection = e.target.id;
+        playRound(userSelection);
+    }
+);
+
+let paper = document.getElementById('paper');
+paper.addEventListener('click',
+    function (e) {
+        let userSelection = e.target.id;
+        playRound(userSelection);
+    }
+);
+
+let scissor = document.getElementById('scissor');
+scissor.addEventListener('click',
+    function (e) {
+        let userSelection = e.target.id;
+        playRound(userSelection);
+    }
+);
+
+let rounds = document.getElementById('rounds');
+let roundScore = document.getElementById('roundScore');
+let win = document.getElementById('win');
+let lost = document.getElementById('lost');
+let equal = document.getElementById('equality');
+
+let newGame = document.getElementById('newGame');
+newGame.addEventListener('click', startNewGame);
+
+startNewGame();
